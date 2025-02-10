@@ -18,7 +18,7 @@ WEBSOCKET_URLS = [
     "wss://proxy2.wynd.network:4444"
 ]
 
-async def connect_to_wss():
+async def connect_to_wss(user_id):
     user_agent = [
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
@@ -60,7 +60,7 @@ async def connect_to_wss():
                             "origin_action": "AUTH",
                             "result": {
                                 "browser_id": device_id,
-                                "user_id": "e5ace647-0cb8-46f8-9d47-19abd6d72b1c",
+                                "user_id": user_id,
                                 "user_agent": custom_headers['User-Agent'],
                                 "timestamp": int(time.time()),
                                 "device_type": "extension",
@@ -133,7 +133,8 @@ async def connect_to_wss():
 
 async def main():
     print("Grass Network")
-    await connect_to_wss()
+    _user_id = input('Please Enter your user ID: ')
+    await connect_to_wss(_user_id)
 
 if __name__ == '__main__':
     asyncio.run(main())
